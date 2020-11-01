@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:final_app/home.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -13,19 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'Christmas Wish List',
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Colors.lightGreen[800],
-        accentColor: Colors.red[600]
+        primaryColor: Colors.red[600],
       ),
       home: Scaffold(
-        appBar: AppBar(
-          leading: Icon(Icons.dehaze),
-          title: Text('text here', style: TextStyle(fontSize: 24.0),),
-        ),
-        body: Center(
-          child: Text(
-              'Home screen for Christmas Wish List',
-          ),
-        ),
+        body: Home(),
       ),
     );
   }
