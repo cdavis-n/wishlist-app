@@ -14,8 +14,35 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Christmas Wish List',
       theme: ThemeData(
+        fontFamily: 'Sofia',
         brightness: Brightness.light,
-        primaryColor: Colors.red[600],
+        primaryColor: Colors.red[900],
+        accentColor: Colors.lightGreen[700],
+        buttonColor: Colors.yellow[700],
+        textTheme: TextTheme(
+          headline1: TextStyle(
+              fontSize: 25,
+              fontStyle: FontStyle.italic,
+              color: Colors.white,
+              fontWeight: FontWeight.w400),
+          headline2: TextStyle(
+              fontSize: 55,
+              fontFamily: 'Chunk',
+              fontStyle: FontStyle.italic,
+              color: Colors.white,
+              fontWeight: FontWeight.w500),
+          headline3: TextStyle(
+            fontSize: 35,
+            fontStyle: FontStyle.italic,
+            color: Colors.white,
+            fontWeight: FontWeight.w400),
+          headline4: TextStyle(
+              fontSize: 35,
+              fontStyle: FontStyle.italic,
+              fontWeight: FontWeight.w400),
+          bodyText1: TextStyle(
+            fontSize: 18),
+        ),
       ),
       home: Scaffold(
         body: Home(),
