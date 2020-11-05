@@ -42,6 +42,8 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w400),
           bodyText1: TextStyle(
             fontSize: 18),
+          bodyText2: TextStyle(
+            fontSize: 25),
         ),
       ),
       home: Scaffold(
