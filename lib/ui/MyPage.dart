@@ -1,4 +1,4 @@
-import 'package:final_app/ui/SelectPhoto.dart';
+import 'package:final_app/ui/EditProfile.dart';
 import 'package:flutter/material.dart';
 
 class MyPage extends StatefulWidget {
@@ -31,7 +31,7 @@ class _MyPageState extends State<MyPage> {
                 style: Theme.of(context).textTheme.bodyText1,),
               onPressed: () => Navigator
                   .push(context, MaterialPageRoute(
-                  builder: (context) => SelectPhoto()))
+                  builder: (context) => EditProfile()))
             ),
             Align(
               alignment: Alignment.topLeft,

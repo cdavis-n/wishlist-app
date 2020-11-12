@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.red[900],
         accentColor: Colors.lightGreen[700],
         buttonColor: Colors.yellow[700],
+        cardColor: Colors.white,
         textTheme: TextTheme(
           headline1: TextStyle(
               fontSize: 25,
