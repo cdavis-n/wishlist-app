@@ -1,3 +1,4 @@
+import 'package:final_app/ui/SelectPhoto.dart';
 import 'package:flutter/material.dart';
 
 class MyPage extends StatefulWidget {
@@ -13,7 +14,7 @@ class _MyPageState extends State<MyPage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
-        title: Text('My WishList'),
+        title: Text('My WishList', style: Theme.of(context).textTheme.headline1),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor.withOpacity(0.5),
       ),
@@ -28,7 +29,9 @@ class _MyPageState extends State<MyPage> {
               color: Theme.of(context).accentColor.withOpacity(0.5),
               child: Text('Edit profile',
                 style: Theme.of(context).textTheme.bodyText1,),
-              onPressed: (){},
+              onPressed: () => Navigator
+                  .push(context, MaterialPageRoute(
+                  builder: (context) => SelectPhoto()))
             ),
             Align(
               alignment: Alignment.topLeft,
@@ -73,4 +76,5 @@ class _MyPageState extends State<MyPage> {
       ),
     );
   }
+
 }
