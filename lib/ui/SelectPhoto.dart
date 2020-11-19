@@ -23,6 +23,7 @@ class _SelectPhotoState extends State<SelectPhoto> {
 
   @override
   Widget build(BuildContext context) {
+    Color color = Colors.white12;
     return Center(
       // create the page for the edit profile page
       child: GestureDetector(
@@ -37,10 +38,10 @@ class _SelectPhotoState extends State<SelectPhoto> {
           )
               : Container(
             decoration: BoxDecoration(
-              color: Colors.white30,
+              color: color,
               borderRadius: BorderRadius.circular(50),
             ),
-            child: Icon(Icons.add_a_photo, color: Colors.white,),
+            child: Icon(Icons.add_a_photo, color: Colors.pink, size: 45,),
             width: 90,
             height: 90,
           ),
@@ -55,7 +56,7 @@ class _SelectPhotoState extends State<SelectPhoto> {
         builder: (BuildContext context){
           return Container(
             padding: EdgeInsets.only(left: 15, right: 15),
-            color: Theme.of(context).cardColor,
+            color: Colors.white24,
             height: 240,
             child: Center (
               child: Wrap (
