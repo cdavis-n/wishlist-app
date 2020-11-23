@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:final_app/ui/HomePage.dart';
 import 'package:final_app/ui/ActivityPage.dart';
 import 'package:final_app/ui/MyPage.dart';
+import 'package:final_app/ui/SearchPage.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -14,17 +15,20 @@ class _HomeState extends State<Home> {
   Map<String, Widget> _itemOfBottomNavigationBar = const {
     'Home': Icon(Icons.home),
     'Activity': Icon(Icons.notifications),
+    'Search': Icon(Icons.search),
     'Me': Icon(Icons.account_circle),
   };
   Map<int, Widget> _navigationPage = {
     0: HomePage(),
     1: ActivityPage(),
-    2: MyPage(),
+    2: SearchPage(),
+    3: MyPage(),
   };
   Map<int, String> _backgroundImage = {
     0: 'assets/images/background1.jpg',
     1: 'assets/images/background2.jpeg',
     2: 'assets/images/background2.jpeg',
+    3: 'assets/images/background2.jpeg',
   };
 
   @override
