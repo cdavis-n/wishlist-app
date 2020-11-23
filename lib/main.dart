@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.red[900],
         accentColor: Colors.lightGreen[700],
         buttonColor: Colors.yellow[700],
+        cardColor: Colors.white,
         textTheme: TextTheme(
           headline1: TextStyle(
               fontSize: 25,
@@ -42,6 +43,8 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.w400),
           bodyText1: TextStyle(
             fontSize: 18),
+          bodyText2: TextStyle(
+            fontSize: 25),
         ),
       ),
       home: Scaffold(
