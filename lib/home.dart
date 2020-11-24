@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
   Map<String, Widget> _itemOfBottomNavigationBar = const {
     'Home': Icon(Icons.home),
     'Activity': Icon(Icons.notifications),
-    'Search': Icon(Icons.search),
+    'WishList': Icon(Icons.list),
     'Me': Icon(Icons.account_circle),
   };
   Map<int, Widget> _navigationPage = {

@@ -51,6 +51,13 @@ flutter:
     - assets/images/background2.jpeg
     - assets/items/ps5.jpg
     - assets/items/xbox.jpg
+    - assets/items/airfryer.jpg
+    - assets/items/camera.jpg
+    - assets/items/iphone.jpg
+    - assets/items/switch.jpg
+    - assets/items/tv.jpg
+    - assets/items/laptop.jpg
+    - assets/items/baby.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
