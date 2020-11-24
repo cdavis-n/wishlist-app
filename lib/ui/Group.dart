@@ -38,7 +38,7 @@ void main() async {
     },
     version: 1,
   );
-  Future<void> insertUser(User user) async {
+  void insertUser(User user) async {
     final Database db = await database;
 
     await db.insert('users', user.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
@@ -50,12 +50,12 @@ void main() async {
       return User(maps[index]['userId'], maps[index]['userImage'], maps[index]['userName']);
     });
   }
-  Future<void> updateUser(User user) async {
+  void updateUser(User user) async {
     final db = await database;
     
     await db.update('users', user.toMap(), where: "userId = ?", whereArgs: [user.userId]);
   }
-  Future<void> deleteUser(int userId) async {
+  void deleteUser(int userId) async {
     final db = await database;
 
     await db.delete('users', where: "userId = ?", whereArgs: [userId]);

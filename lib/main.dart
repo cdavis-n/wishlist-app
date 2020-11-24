@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:final_app/home.dart';
+import 'package:final_app/Login.dart';
 
 
 void main() {
@@ -19,7 +20,6 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.red[900],
         accentColor: Colors.lightGreen[700],
         buttonColor: Colors.yellow[700],
-        cardColor: Colors.white,
         textTheme: TextTheme(
           headline1: TextStyle(
               fontSize: 25,
@@ -33,22 +33,13 @@ class MyApp extends StatelessWidget {
               color: Colors.white,
               fontWeight: FontWeight.w500),
           headline3: TextStyle(
-            fontSize: 35,
-            fontStyle: FontStyle.italic,
-            color: Colors.white,
-            fontWeight: FontWeight.w400),
-          headline4: TextStyle(
               fontSize: 35,
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w400),
-          bodyText1: TextStyle(
-            fontSize: 18),
-          bodyText2: TextStyle(
-            fontSize: 25),
         ),
       ),
       home: Scaffold(
-        body: Home(),
+        body: Login(),
       ),
     );
   }

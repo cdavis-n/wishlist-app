@@ -47,6 +47,7 @@ class _HomeState extends State<Home> {
         Scaffold(
           backgroundColor: Colors.transparent,
           bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
             items: _itemOfBottomNavigationBar.entries.map((e) =>
                 BottomNavigationBarItem(title: Text(e.key), icon: e.value)).toList(),
             currentIndex: _selected,
