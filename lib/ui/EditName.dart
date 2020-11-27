@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:final_app/ui/Group.dart';
+import 'package:final_app/ui/Database.dart';
 
 class EditName extends StatefulWidget{
   @override

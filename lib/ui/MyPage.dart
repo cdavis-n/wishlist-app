@@ -1,4 +1,6 @@
 import 'package:final_app/ui/EditProfile.dart';
+import 'package:final_app/ui/Database.dart';
+
 import 'package:flutter/material.dart';
 
 class MyPage extends StatefulWidget {
@@ -7,8 +9,8 @@ class MyPage extends StatefulWidget {
 }
 class _MyPageState extends State<MyPage> {
   var _itemNum = 18;
-  //var _image = '';
-  var _name = 'Chihiro';
+  //var _image = currentUser.image;
+  var _name = currentUser.name;
 
   @override
   Widget build(BuildContext context) {

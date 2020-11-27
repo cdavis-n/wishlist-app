@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:final_app/home.dart';
 import 'package:final_app/Login.dart';
-
+import 'package:final_app/ui/Database.dart';
+import 'package:final_app/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.red[900],
         accentColor: Colors.lightGreen[700],
         buttonColor: Colors.yellow[700],
+        scaffoldBackgroundColor: Colors.transparent,
         textTheme: TextTheme(
           headline1: TextStyle(
               fontSize: 25,
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: Scaffold(
-        body: Login(),
+        body: Home(),
       ),
     );
   }

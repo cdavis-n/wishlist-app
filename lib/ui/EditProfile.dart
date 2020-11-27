@@ -1,7 +1,7 @@
 import 'package:final_app/ui/EditName.dart';
 import 'package:flutter/material.dart';
 import 'package:final_app/ui/SelectPhoto.dart';
-import 'package:final_app/ui/Group.dart';
+import 'package:final_app/ui/Database.dart';
 
 class EditProfile extends StatefulWidget{
   @override

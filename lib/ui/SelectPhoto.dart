@@ -23,29 +23,32 @@ class _SelectPhotoState extends State<SelectPhoto> {
 
   @override
   Widget build(BuildContext context) {
-    Color color = Colors.white12;
+    Color _color = Theme.of(context).accentColor;
     return Center(
       // create the page for the edit profile page
       child: GestureDetector(
         onTap: () => _showBottomSheet(context),
-        child:  _image != null
-              ? ClipOval(
-            child: Image.file(
-                File(_image.path),
-                width: 90,
-                height: 90,
-                fit: BoxFit.cover),
-          )
-              : Container(
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(50),
+        child: CircleAvatar(
+          radius: 40,
+            child: _image != null
+                ? ClipOval(
+              child: Image.file(
+                  File(_image.path),
+                  width: 90,
+                  height: 90,
+                  fit: BoxFit.cover),
+            )
+                : Container(
+              decoration: BoxDecoration(
+                color: _color,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: Icon(Icons.add_a_photo, color: Colors.white, size: 45,),
+              width: 90,
+              height: 90,
             ),
-            child: Icon(Icons.add_a_photo, color: Colors.black, size: 45,),
-            width: 90,
-            height: 90,
           ),
-      ),
+        ),
     );
   }
 

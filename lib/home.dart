@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
           ),
         ),
         Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             items: _itemOfBottomNavigationBar.entries.map((e) =>
