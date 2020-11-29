@@ -93,6 +93,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final double categoryHeight = size.height*0.10;
+
     return SafeArea(
           child: Container(
             decoration: BoxDecoration(
@@ -104,16 +105,40 @@ class _SearchPageState extends State<SearchPage> {
               children: <Widget>[
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Text("My Wish List",
+                    Tooltip(
+                      message: 'Item is saved!',
+                      child: IconButton(
+                        icon: Icon(Icons.favorite, color: Colors.red[500], size: 30,),
+                        onPressed: () {},
+                      ),
+                    ),
+                    Text("Wish List",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: 40),
                     ),
+                    Tooltip(
+                      message: 'Item is not saved!',
+                      child: IconButton(
+                        icon: Icon(Icons.favorite_border, color: Colors.red[500], size: 30,),
+                        onPressed: () {},
+                      ),
+                    ),
                   ],
                 ),
+                new Container(
+                  height: 90,
+                  width: 90,
+                  child: CircularProgressIndicator(
+                    backgroundColor: Colors.transparent,
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    strokeWidth: 5,
+                  ),
+                ),
+                Text('Items Available', style: TextStyle(fontSize: 30),),
                 const SizedBox(
                   height: 10,
                 ),

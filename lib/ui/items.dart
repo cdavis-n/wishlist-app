@@ -53,4 +53,28 @@ const ITEM_DATA = [
     "price": 17.99,
     "image": "baby.jpg"
   },
+  {
+    "name": "AirPods Pro",
+    "brand": "Apple",
+    "price": 249.99,
+    "image": "airpods.jpg"
+  },
+  {
+    "name": "FitBit - Charge 4",
+    "brand": "FitBit",
+    "price": 149.95,
+    "image": "fitbit.jpg"
+  },
+  {
+    "name": "HomePod Mini",
+    "brand": "Apple",
+    "price": 99.99,
+    "image": "home.jpg"
+  },
+  {
+    "name": "Apple Watch Series 6",
+    "brand": "Apple",
+    "price": 429.99,
+    "image": "watch.jpg"
+  },
 ];
