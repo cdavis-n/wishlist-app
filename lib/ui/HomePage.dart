@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.only(top: 12, left: 18.0),
       child: Align(
         alignment: Alignment.topLeft,
-        child: Text('Group', style: _style3,
+        child: Text("Family's WishList", style: _style3,
         ),
       ),
     );

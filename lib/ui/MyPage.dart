@@ -1,7 +1,7 @@
 import 'package:final_app/ui/EditProfile.dart';
-import 'package:final_app/ui/Database.dart';
-
+import 'package:final_app/User.dart';
 import 'package:flutter/material.dart';
+import 'package:final_app/ui/SelectPhoto.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -9,8 +9,9 @@ class MyPage extends StatefulWidget {
 }
 class _MyPageState extends State<MyPage> {
   var _itemNum = 18;
-  //var _image = currentUser.image;
   var _name = currentUser.name;
+  var _image = currentUser.image;
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,26 @@ class _MyPageState extends State<MyPage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ClipOval(
-            child: Image.asset('assets/images/profile.jpeg',
-                width: 90,
-                height: 90,
-                fit: BoxFit.cover),
+          CircleAvatar(
+            radius: 40,
+            child: _image != null
+                ? ClipOval(
+              child: Image(image: AssetImage(_image),
+                  width: 90,
+                  height: 90,
+                  fit: BoxFit.cover),
+              )
+                : Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: Icon(Icons.add_a_photo, color: Colors.white, size: 45,),
+              width: 90,
+              height: 90,
+            ),
           ),
+
           Container(
             padding: EdgeInsets.only(left: 15),
             child: Text(_name, style: _style3),
@@ -69,11 +84,6 @@ class _MyPageState extends State<MyPage> {
               onPressed: () => Navigator.push(context, MaterialPageRoute(
                   builder: (context) => EditProfile()))
             ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text('WishList', style: _style3),
-            ),
-
           ],
         ),
       ),

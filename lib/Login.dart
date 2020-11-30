@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:final_app/SignUp.dart';
-import 'package:final_app/ui/Database.dart';
+import 'package:final_app/User.dart';
 import 'package:final_app/home.dart';
+
 
 
 class Login extends StatefulWidget{
@@ -9,13 +10,8 @@ class Login extends StatefulWidget{
   _LoginState createState() => _LoginState();
 }
 class _LoginState extends State<Login> {
-  var _email;
-  var _password;
   TextEditingController _controller0;
   TextEditingController _controller1;
-  var _errorFlag = '';
-
-  var me = User(0, 'Chihiro', null, 'c12345', 'chihiro@gmail.com');
 
   @override
   void initState(){
@@ -31,8 +27,6 @@ class _LoginState extends State<Login> {
   }
   @override
   Widget build(BuildContext context) {
-    insertUser(me);
-
     Color _color0 = Colors.transparent;
     Color _color1 = Theme.of(context).accentColor.withOpacity(0.6);
     Color _color2 = Theme.of(context).primaryColor.withOpacity(0.6);
@@ -52,72 +46,52 @@ class _LoginState extends State<Login> {
       ),
     );
 
-    final _emailField = TextField(
+    final _codeField = TextFormField(
       controller: _controller0,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(20),
-        icon: Icon(Icons.email),
-        hintText: 'Email Address',
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        contentPadding: EdgeInsets.all(10),
+        icon: Icon(Icons.account_circle),
+        hintText: 'Username',
       ),
-      onChanged: (text) => _email = text,
     );
-    final _passwordField = TextField(
+    final _passwordField = TextFormField(
       controller: _controller1,
       obscureText: true,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.all(20),
+        contentPadding: EdgeInsets.all(10),
         icon: Icon(Icons.vpn_key),
         hintText: 'Password',
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
       ),
-      onChanged: (text) => _password = text,
     );
 
-    final _loginButton = Padding(
-      padding: EdgeInsets.only(top: 20),
+    final _loginButton = Center(
       child: FlatButton(
-        color: _color2,
-        padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
+        padding: EdgeInsets.only(top: 10, bottom: 10),
+        color: _color1,
         child: Text('Login', style: _style2),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        onPressed: () async {
-          var _res = await login(_email, _password);
-          if(_res == null) {
-            setState(() => _errorFlag = 'Login Error: You typed wrong email address/password.');
-          }
-          else {
-            setState(() => currentUser = _res);
-            Navigator
-                .push(context, MaterialPageRoute(builder: (context) => Home()));
-          }
-        },
       ),
     );
     final _signInButton = Padding(
       padding: EdgeInsets.only(top: 5),
       child: FlatButton(
-        padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
+        padding: EdgeInsets.only(top: 10, bottom: 10),
         color: _color2,
         child: Text('Sign In', style: _style2),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         onPressed: () => showModalBottomSheet(
             context: context,
+            isScrollControlled: true,
             builder: (BuildContext context){
               return Container(
                 height: 550,
-                padding: EdgeInsets.fromLTRB(15, 35, 25, 15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                padding: EdgeInsets.only(left: 15, top: 35, right: 25),
+                child: ListView(
                   children: [
-                    _emailField,
+                    _codeField,
+                    SizedBox(height: 10),
                     _passwordField,
+                    SizedBox(height: 10),
                     _loginButton,
-                    Text(_errorFlag, style: _style3),
                   ],
                 ),
               );
@@ -127,7 +101,7 @@ class _LoginState extends State<Login> {
     final _signUpButton = Padding(
       padding: EdgeInsets.only(top: 45),
       child: FlatButton(
-        padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
+        padding: EdgeInsets.only(top: 10, bottom: 10),
         color: _color1,
         child: Text('Sign Up', style: _style2),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
@@ -148,12 +122,12 @@ class _LoginState extends State<Login> {
           ),
         ),
         Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: _color0,
           body: Center(
             child: Padding(
               padding: EdgeInsets.fromLTRB(25, 190, 25, 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: ListView(
                 children: [
                   _title,
                   _signInButton,

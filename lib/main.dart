@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:final_app/Login.dart';
-import 'package:final_app/ui/Database.dart';
 import 'package:final_app/home.dart';
 
-void main() {
+
+void main() async {
   runApp(MyApp());
 }
 

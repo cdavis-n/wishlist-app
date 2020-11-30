@@ -1,7 +1,7 @@
 import 'package:final_app/ui/EditName.dart';
 import 'package:flutter/material.dart';
 import 'package:final_app/ui/SelectPhoto.dart';
-import 'package:final_app/ui/Database.dart';
+import 'package:final_app/User.dart';
 
 class EditProfile extends StatefulWidget{
   @override
@@ -41,7 +41,6 @@ class _EditProfileState extends State<EditProfile> {
               FlatButton(
                 child: Text('Done', style: _style2),
                 onPressed: () {
-                  // save the data
                   Navigator.of(context).pop();
                 },
               )

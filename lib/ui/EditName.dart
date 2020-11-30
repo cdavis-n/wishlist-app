@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:final_app/ui/Database.dart';
+import 'package:final_app/User.dart';
 
 class EditName extends StatefulWidget{
   @override
   _EditNameState createState() => _EditNameState();
 }
 class _EditNameState extends State<EditName> {
-  TextEditingController _controller;
-  // _name = User's current name
-  var _name;
+  TextEditingController _controller = TextEditingController();
+
+  var _name = currentUser.name;
 
   @override
   void initState(){
     super.initState();
-    _controller = TextEditingController();
+    _controller.text = _name;
+    _controller.addListener(() {
+      setState(() {_name = _controller.text;});
+    });
   }
   @override
   void dispose(){
@@ -31,7 +34,6 @@ class _EditNameState extends State<EditName> {
           borderRadius: BorderRadius.circular(28),
         ),
       ),
-      onChanged: (text) {},
     );
   }
 }

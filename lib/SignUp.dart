@@ -1,59 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:final_app/ui/Database.dart';
+import 'package:final_app/User.dart';
 import 'package:final_app/home.dart';
-import 'package:final_app/ui/SelectPhoto.dart';
 
 class SignUp extends StatefulWidget {
   _SignUpState createState() => _SignUpState();
 }
 class _SignUpState extends State<SignUp> {
-  var _name;
-  var _password;
-  var _email;
-  var _image;
+
+  var _name, _code, _password;
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
   @override
   void initState(){
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     Color _color0 = Theme.of(context).scaffoldBackgroundColor;
 
-    final _nameField = TextField(
+    final _nameField = TextFormField(
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(18),
         labelText: 'Name',
-        hintText: 'Name',
+        hintText: 'Name *',
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
         ),
       ),
       onChanged: (text) => _name = text,
+      validator: (text){
+        return text.length > 10 ? 'Max letters are used.' : null;
+      },
     );
-    final _emailField = TextField(
+    final _codeField = TextFormField(
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(18),
-        labelText: 'Email Address',
-        hintText: 'Email Address',
+        labelText: 'User Name',
+        hintText: 'User Name *',
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
         ),
       ),
-      onChanged: (text) => _email = text,
+      onChanged: (text) => _code = text,
+      validator: (text) {
+        return getRes(text) == true ? 'You cannot use the user name.' : null;
+      },
     );
-    final _passwordField = TextField(
+    final _passwordField = TextFormField(
       obscureText: true,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(18),
         labelText: 'Password',
-        hintText: 'Password',
+        hintText: 'Password *',
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
         ),
       ),
       onChanged: (text) => _password = text,
+      validator: (text) {
+        return text.length < 3 ? 'Your password is too weak.' : null;
+      },
     );
     final _title = Container(
       padding: EdgeInsets.all(10),
@@ -63,25 +69,12 @@ class _SignUpState extends State<SignUp> {
     );
 
     final _signUpButton = Center(
-      child: FlatButton(
-        padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
-        color: Theme.of(context).accentColor.withOpacity(0.7),
-        child: Text('Sign Up', style: TextStyle(fontSize: 25)),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        onPressed: () async {
-          if(_name == null || _email == null || _password == null)
-            {
-              AlertDialog(
-                // alert to fill everything
-              );
-            } else {
-            var _id = await getIndex();
-            setState(() => currentUser = new User(_id, _name, _image, _password, _email));
-            insertUser(currentUser);
-            Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
-          }
-        }
-      ),
+      child: FutureBuilder(
+          future: Provider.db.insertUser(User(code: _code, name: _name, image: null, password: _password)),
+          builder: (BuildContext context, AsyncSnapshot<User> snapshot){
+              return 
+            }
+          }),
     );
 
     return Stack(
@@ -94,45 +87,48 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
         ),
-        Material(
-          color: _color0,
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-               FlatButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    color: _color0,
-                    child: Container(
-                          width: 100,
-                          height: 40,
-                          child: Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(Icons.arrow_back),
-                                Text(' Back', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                          ),
+        FutureBuilder(
+          future: Provider.db.insertUser(user),
+            builder: (BuildContext context, AsyncSnapshot snapshot){
+            if(snapshot.hasData) {
+              return
+            }
+            }),
+
+        SingleChildScrollView(
+          child: Material(
+            color: _color0,
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
+              child: Form(
+                key: _key,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FlatButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      color: _color0,
+                      child: Container(
+                        width: 60,
+                        height: 40,
+                        child: Text('Back', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                      ),
                     ),
-               ),
-                _title,
-                SelectPhoto(),
-                SizedBox(height: 18),
-                _nameField,
-                SizedBox(height: 10),
-                _emailField,
-                SizedBox(height: 10),
-                _passwordField,
-                SizedBox(height: 30),
-                _signUpButton,
-              ],
+                    _title,
+                    SizedBox(height: 18),
+                    _nameField,
+                    SizedBox(height: 10),
+                    _codeField,
+                    SizedBox(height: 10),
+                    _passwordField,
+                    SizedBox(height: 30),
+                    _signUpButton,
+                  ],
+                ),
+              ),
             ),
           ),
         ),
-
       ],
     );
   }
