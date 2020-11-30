@@ -49,6 +49,7 @@ flutter:
   assets:
     - assets/images/background1.jpg
     - assets/images/background2.jpeg
+    
     - assets/images/background3.jpg
     - assets/items/ps5.jpg
     - assets/items/xbox.jpg
