@@ -9,7 +9,7 @@ List<User> database = [
   User(code: 'rachel003', name: 'Rachel', image: null, password: 'rachel56'),
   User(code: 'bobby004', name: 'Bobby', image: null, password: 'bobby78' ),
 ];
-List<User> familyList = [
+List<User> demoList = [
   User(code: 'emily001', name: 'Emily', image: 'assets/images/profile.jpeg', password: 'emily12'),
   User(code: 'james002', name: 'James', image: null, password: 'james34'),
   User(code: 'rachel003', name: 'Rachel', image: null, password: 'rachel56'),
@@ -55,6 +55,9 @@ bool checkUsername(String username) {
 }
 void insertUser(User user) {
   database.add(user);
+}
+List<User> initFamilyList() {
+  return currentUser.familyList = demoList;
 }
 
 
