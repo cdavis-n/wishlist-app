@@ -10,10 +10,10 @@ List<User> database = [
   User(code: 'bobby004', name: 'Bobby', image: null, password: 'bobby78' ),
 ];
 List<User> demoList = [
-  User(code: 'emily001', name: 'Emily', image: 'assets/images/profile.jpeg', password: 'emily12'),
-  User(code: 'james002', name: 'James', image: null, password: 'james34'),
-  User(code: 'rachel003', name: 'Rachel', image: null, password: 'rachel56'),
-  User(code: 'bobby004', name: 'Bobby', image: null, password: 'bobby78' ),
+  User(code: 'emily001', name: 'Emily', image: 'assets/people/jeff.jpg', password: 'emily12'),
+  User(code: 'james002', name: 'James', image: 'assets/people/kendrick.jpg', password: 'james34'),
+  User(code: 'rachel003', name: 'Rachel', image: 'assets/people/michelle.jpg', password: 'rachel56'),
+  User(code: 'bobby004', name: 'Bobby', image: 'assets/people/miranda.jpg', password: 'bobby78' ),
 ];
 
 class User {
