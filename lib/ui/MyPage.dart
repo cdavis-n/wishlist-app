@@ -66,13 +66,8 @@ class _MyPageState extends State<MyPage> {
 
     return Scaffold(
       backgroundColor: _color0,
-      appBar: AppBar(
-        title: Text('My WishList', style: _style1),
-        centerTitle: true,
-        backgroundColor: _color1,
-      ),
       body: Container(
-        padding: EdgeInsets.only(right: 15, left: 15, top: 5),
+        padding: EdgeInsets.only(right: 15, left: 20, top: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

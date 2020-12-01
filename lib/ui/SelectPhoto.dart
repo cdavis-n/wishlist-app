@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:final_app/User.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
+
 
 
 class SelectPhoto extends StatefulWidget{
@@ -9,54 +9,70 @@ class SelectPhoto extends StatefulWidget{
   _SelectPhotoState createState() => _SelectPhotoState();
 }
 class _SelectPhotoState extends State<SelectPhoto> {
+  var _curr = currentUser.image;
+  PickedFile _image;
+  ImagePicker _picker;
+  String imagePath;
 
+  String getImage() {
+    if(_image != null && _curr != null) {
+      setState(() => imagePath = _image.path);
+    } else if (_image == null && _curr != null) {
+      setState(() => imagePath = _curr);
+    } else {
+      setState(() => imagePath = null);
+    }
+    return imagePath;
+  }
   @override
   void initState(){
     super.initState();
   }
-  String _imagePath;
-  PickedFile _image;
-  getImagePath(Path path) async {
-    return path.toString();
-  }
-  final _picker = ImagePicker();
+
   Future<void> _fromGallery() async {
     final _item = await _picker.getImage(source: ImageSource.gallery);
-    setState(() {
-      _image = _item;
-      _imagePath = _image.path;
-    });
+    setState(() => _image = _item);
   }
   Future<void> _fromCamera() async {
     final _item = await _picker.getImage(source: ImageSource.camera);
-    setState(() {
-      _image = _item;
-      _imagePath = _image.path;
-    });
+    setState(() => _image = _item);
   }
   Future<void> _removePhoto() async {
     setState(() => _image = null);
   }
-  _getImage(PickedFile image) async {
-    if(image != null) {
-
-      ClipOval(
-        child: Image(image: AssetImage(_image.path),
-            width: 90,
-            height: 90,
-            fit: BoxFit.cover),
-      );
-    }
-  }
   @override
   Widget build(BuildContext context) {
     Color _color = Theme.of(context).accentColor;
-    return FutureBuilder<List<User>> (
-      future: Provider.db.updateUserImage(currentUser, _imagePath),
+
+    return Center(
+      // create the page for the edit profile page
+      child: GestureDetector(
+        onTap: () => _showBottomSheet(context),
+        child: CircleAvatar(
+          radius: 40,
+          child: getImage() != null
+              ? ClipOval(
+            child: Image(image: AssetImage(getImage()),
+                width: 90,
+                height: 90,
+                fit: BoxFit.cover),
+          )
+              : Container(
+            decoration: BoxDecoration(
+              color: _color,
+              borderRadius: BorderRadius.circular(50),
+            ),
+            child: Icon(Icons.add_a_photo, color: Colors.white, size: 45,),
+            width: 90,
+            height: 90,
+          ),
+        ),
+      ),
     );
   }
 
-  void _showBottomSheet(context){
+
+    void _showBottomSheet(context){
     showModalBottomSheet(
         context: context,
         elevation: 2.0,

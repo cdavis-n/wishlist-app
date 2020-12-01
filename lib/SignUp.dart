@@ -10,6 +10,7 @@ class _SignUpState extends State<SignUp> {
   var _name, _code, _password;
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
 
+
   @override
   void initState(){
     super.initState();
@@ -43,7 +44,7 @@ class _SignUpState extends State<SignUp> {
       ),
       onChanged: (text) => _code = text,
       validator: (text) {
-        return getRes(text) == true ? 'You cannot use the user name.' : null;
+        return  checkUsername(text) == false ? 'You cannot use the user name.' : null;
       },
     );
     final _passwordField = TextFormField(
@@ -68,14 +69,6 @@ class _SignUpState extends State<SignUp> {
       ),
     );
 
-    final _signUpButton = Center(
-      child: FutureBuilder(
-          future: Provider.db.insertUser(User(code: _code, name: _name, image: null, password: _password)),
-          builder: (BuildContext context, AsyncSnapshot<User> snapshot){
-              return 
-            }
-          }),
-    );
 
     return Stack(
       children: [
@@ -87,14 +80,6 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
         ),
-        FutureBuilder(
-          future: Provider.db.insertUser(user),
-            builder: (BuildContext context, AsyncSnapshot snapshot){
-            if(snapshot.hasData) {
-              return
-            }
-            }),
-
         SingleChildScrollView(
           child: Material(
             color: _color0,
@@ -102,28 +87,47 @@ class _SignUpState extends State<SignUp> {
               padding: EdgeInsets.fromLTRB(15, 20, 15, 20),
               child: Form(
                 key: _key,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    FlatButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      color: _color0,
-                      child: Container(
-                        width: 60,
-                        height: 40,
-                        child: Text('Back', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                      ),
-                    ),
-                    _title,
-                    SizedBox(height: 18),
-                    _nameField,
-                    SizedBox(height: 10),
-                    _codeField,
-                    SizedBox(height: 10),
-                    _passwordField,
-                    SizedBox(height: 30),
-                    _signUpButton,
-                  ],
+                child: FutureBuilder(
+                  builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        FlatButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          color: _color0,
+                          child: Container(
+                            width: 60,
+                            height: 40,
+                            child: Text('Back', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                          ),
+                        ),
+                        _title,
+                        SizedBox(height: 10),
+                        _nameField,
+                        SizedBox(height: 10),
+                        _codeField,
+                        SizedBox(height: 10),
+                        _passwordField,
+                        SizedBox(height: 10),
+                        Center(
+                          child: FlatButton(
+                              padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
+                              color: Theme.of(context).accentColor.withOpacity(0.7),
+                              child: Text('Sign Up', style: TextStyle(fontSize: 25)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                              onPressed: () {
+                                if(_key.currentState.validate()) {
+                                  setState(() => currentUser = new User(code: _code, name: _name, image: null, password: _password));
+                                  insertUser(currentUser);
+                                  Navigator.push(context, MaterialPageRoute(
+                                      builder: (context) => Home()));
+                                }
+                              }
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ),
             ),

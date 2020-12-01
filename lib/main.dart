@@ -1,3 +1,4 @@
+import 'package:final_app/User.dart';
 import 'package:flutter/material.dart';
 import 'package:final_app/Login.dart';
 import 'package:final_app/home.dart';
@@ -6,7 +7,6 @@ import 'package:final_app/home.dart';
 void main() async {
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: Scaffold(
-        body: Home(),
+        body: Login(),
       ),
     );
   }

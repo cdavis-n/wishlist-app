@@ -10,21 +10,13 @@ class Login extends StatefulWidget{
   _LoginState createState() => _LoginState();
 }
 class _LoginState extends State<Login> {
-  TextEditingController _controller0;
-  TextEditingController _controller1;
+  var _username, _password;
 
   @override
   void initState(){
     super.initState();
-    _controller0 = TextEditingController();
-    _controller1 = TextEditingController();
   }
-  @override
-  void dispose(){
-    _controller0.dispose();
-    _controller1.dispose();
-    super.dispose();
-  }
+
   @override
   Widget build(BuildContext context) {
     Color _color0 = Colors.transparent;
@@ -47,28 +39,50 @@ class _LoginState extends State<Login> {
     );
 
     final _codeField = TextFormField(
-      controller: _controller0,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(10),
         icon: Icon(Icons.account_circle),
         hintText: 'Username',
       ),
+      onChanged: (text) => _username = text,
     );
     final _passwordField = TextFormField(
-      controller: _controller1,
+
       obscureText: true,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.all(10),
         icon: Icon(Icons.vpn_key),
         hintText: 'Password',
       ),
+      onChanged: (text) => _password = text,
     );
 
     final _loginButton = Center(
       child: FlatButton(
-        padding: EdgeInsets.only(top: 10, bottom: 10),
-        color: _color1,
+        padding: EdgeInsets.only(right: 30, left: 30),
+        color: _color2,
         child: Text('Login', style: _style2),
+        onPressed: ()  {
+          User res = login(_username, _password);
+          if(res != null) {
+            setState(() => currentUser = res);
+            Navigator
+                .push(context, MaterialPageRoute(builder: (context) => Home()));
+          } else {
+            showDialog(context: context, builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text('Login Error:'),
+                content: Text('You typed wrong username/password.'),
+                actions: [
+                  FlatButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text('OK'),
+                  ),
+                ],
+              );
+            });
+          }
+        },
       ),
     );
     final _signInButton = Padding(
@@ -90,7 +104,7 @@ class _LoginState extends State<Login> {
                     _codeField,
                     SizedBox(height: 10),
                     _passwordField,
-                    SizedBox(height: 10),
+                    SizedBox(height: 15),
                     _loginButton,
                   ],
                 ),
@@ -115,7 +129,7 @@ class _LoginState extends State<Login> {
         Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/login.jpeg'),
+              image: AssetImage('assets/images/background1.jpg'),
               fit: BoxFit.cover,
               alignment: Alignment.topCenter,
             ),

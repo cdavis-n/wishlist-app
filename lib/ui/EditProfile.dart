@@ -8,7 +8,7 @@ class EditProfile extends StatefulWidget{
   _EditProfileState createState() => _EditProfileState();
 }
 class _EditProfileState extends State<EditProfile> {
-  //var _encodedImage = base64.encode(input);
+
   @override
   Widget build(BuildContext context) {
     Color _color0 = Colors.transparent;
