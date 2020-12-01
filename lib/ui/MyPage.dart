@@ -1,7 +1,7 @@
 import 'package:final_app/ui/EditProfile.dart';
 import 'package:final_app/User.dart';
 import 'package:flutter/material.dart';
-import 'package:final_app/ui/SelectPhoto.dart';
+import 'WishList.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -11,6 +11,97 @@ class _MyPageState extends State<MyPage> {
   var _itemNum = 18;
   var _name = currentUser.name;
   var _image = currentUser.image;
+
+  ScrollController controller = ScrollController();
+  bool closeTopContainer = false;
+  double topContainer = 0;
+  //final snackBar = SnackBar(content: Text('No one has purchased this item for you yet :('));
+
+  List<Widget> myItems = [];
+
+  void getPostData() {
+    List<dynamic> responseList = MY_ITEMS;
+    List<Widget> listItems = [];
+    responseList.forEach((post) {
+      listItems.add(Container(
+          height: 175,
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+              color: Colors.white, boxShadow: [
+            BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0),
+          ]),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: 20.0, vertical: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      post["name"],
+                      style: const TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      post["brand"],
+                      style: const TextStyle(fontSize: 15, color: Colors.grey),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "\$ ${post["price"]}",
+                      style: const TextStyle(fontSize: 15,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.red[200])
+                      ),
+                        onPressed: () {
+                          final snackBar = SnackBar(
+                              content: Text('No one has purchased this item for you yet :('),
+                              action: SnackBarAction(
+                                label: 'Dismiss',
+                                onPressed: () {},
+                          ),
+                          );
+                          Scaffold.of(context).showSnackBar(snackBar);
+                        },
+                        child: Text('Status'),
+                      ),
+                  ],
+                ),
+                Image.asset(
+                  "assets/items/${post["image"]}",
+                  height: 90.0,
+                ),
+              ],
+            ),
+          )));
+    });
+    setState(() {
+      myItems = listItems;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getPostData();
+    controller.addListener(() {
+      double value = controller.offset/119;
+
+      setState(() {
+        topContainer = value;
+        closeTopContainer = controller.offset > 50;
+      });
+    });
+  }
 
 
   @override
@@ -46,7 +137,6 @@ class _MyPageState extends State<MyPage> {
               height: 90,
             ),
           ),
-
           Container(
             padding: EdgeInsets.only(left: 15),
             child: Text(_name, style: _style3),
@@ -79,6 +169,56 @@ class _MyPageState extends State<MyPage> {
               onPressed: () => Navigator.push(context, MaterialPageRoute(
                   builder: (context) => EditProfile()))
             ),
+            Text('Items Available',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                  color: Colors.white),),
+            const SizedBox(
+              height: 10,
+            ),
+            AnimatedOpacity(
+              opacity: closeTopContainer?0:1,
+              duration: const Duration(milliseconds: 200),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                alignment: Alignment.topCenter,
+              ),
+            ),
+            Text('My Wish List!',
+              style: TextStyle(
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red[300]),
+            ),
+            Expanded(
+                child: ListView.builder(
+                  controller: controller,
+                  itemCount: myItems.length,
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    double scale = 1.0;
+                    if(topContainer > 0.5) {
+                      scale = index + 0.5 - topContainer;
+                      if (scale < 0) {
+                        scale = 0;
+                      } else if (scale > 1) {
+                        scale = 1;
+                      }
+                    }
+                    return Opacity(
+                      opacity: scale,
+                      child: Transform(
+                        transform: Matrix4.identity()..scale(scale,scale),
+                        alignment: Alignment.bottomCenter,
+                        child: Align(
+                            heightFactor: 0.7,
+                            alignment: Alignment.topCenter,
+                            child: myItems[index]
+                        ),
+                      ),);
+                  },
+                )),
           ],
         ),
       ),

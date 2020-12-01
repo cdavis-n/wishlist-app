@@ -6,7 +6,7 @@ const ITEM_DATA = [
     "image": "ps5.jpg"
   },
   {
-    "name": "Xbox SerieX",
+    "name": "Xbox Series X",
     "brand": "Microsoft",
     "price": 599.99,
     "image": "xbox.jpg"

@@ -1,8 +1,5 @@
-import 'package:final_app/User.dart';
 import 'package:flutter/material.dart';
 import 'package:final_app/Login.dart';
-import 'package:final_app/home.dart';
-
 
 void main() async {
   runApp(MyApp());
