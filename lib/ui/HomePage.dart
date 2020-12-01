@@ -1,41 +1,26 @@
 import 'package:flutter/material.dart';
 
-class Item {
-  ImageIcon imageIcon;
-  String name;
-  Item(this.imageIcon, this.name);
-}
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
-  List<Item> _list = [
-
-  ];
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          _countdown(context),
-          _groupTitle(context),
-          // **** create group list: ListView.builder; top = create group
-        ],
-    );
-  }
-  Container _countdown(context)  {
-    return Container(
-      //color: Theme.of(context).accentColor.withOpacity(0.8),
+    TextStyle _style1 = Theme.of(context).textTheme.headline1;
+    TextStyle _style2 = Theme.of(context).textTheme.headline2;
+    TextStyle _style3 = Theme.of(context).textTheme.headline3;
+    TextStyle _style4 = Theme.of(context).textTheme.headline3.apply(color: Colors.white);
+
+    final _countDown = Container(
       padding: EdgeInsets.fromLTRB(21, 25, 21, 21),
       child: Column(
         children: [
           Align(
             alignment: Alignment.centerLeft,
             child: Text('You have only',
-                style: Theme.of(context).textTheme.headline1),
+                style: _style1),
           ),
           Padding(
             padding: EdgeInsets.only(top: 8.0),
@@ -43,32 +28,37 @@ class _HomePageState extends State<HomePage> {
               text: TextSpan(
                   text: DateTime(DateTime.now().year, 12, 25)
                       .difference(DateTime.now()).inDays.toString(),
-                  style: Theme.of(context).textTheme.headline2,
+                  style: _style2,
                   children: [
-                    TextSpan(
-                        text: ' days',
-                        style: Theme.of(context).textTheme.headline3),
+                    TextSpan(text: ' days', style: _style4),
                   ]),
             ),
           ),
           Align(
             alignment: Alignment.centerRight,
-            child: Text('Until Christmas...!!!',
-                style:Theme.of(context).textTheme.headline1),
+            child: Text('Until Christmas...!!!', style:_style1),
           ),
         ],
       ),
     );
-  }
-  Container _groupTitle(context) {
-    return Container(
+
+    final _groupTitle = Container(
       padding: EdgeInsets.only(top: 12, left: 18.0),
       child: Align(
         alignment: Alignment.topLeft,
-        child: Text('Group',
-          style: Theme.of(context).textTheme.headline4,
+        child: Text("Family's WishList", style: _style3,
         ),
       ),
+    );
+
+    return  Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          _countDown,
+          _groupTitle,
+          // **** create group list: ListView.builder; top = create group
+        ],
     );
   }
 }

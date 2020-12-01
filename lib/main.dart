@@ -1,11 +1,12 @@
+import 'package:final_app/User.dart';
 import 'package:flutter/material.dart';
+import 'package:final_app/Login.dart';
 import 'package:final_app/home.dart';
 
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.red[900],
         accentColor: Colors.lightGreen[700],
         buttonColor: Colors.yellow[700],
-        cardColor: Colors.white,
+        scaffoldBackgroundColor: Colors.transparent,
         textTheme: TextTheme(
           headline1: TextStyle(
               fontSize: 25,
@@ -33,22 +34,18 @@ class MyApp extends StatelessWidget {
               color: Colors.white,
               fontWeight: FontWeight.w500),
           headline3: TextStyle(
-            fontSize: 35,
-            fontStyle: FontStyle.italic,
-            color: Colors.white,
-            fontWeight: FontWeight.w400),
-          headline4: TextStyle(
               fontSize: 35,
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.w400),
-          bodyText1: TextStyle(
-            fontSize: 18),
-          bodyText2: TextStyle(
-            fontSize: 25),
+          headline4: TextStyle(
+            fontSize: 45,
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.w500,
+          )
         ),
       ),
       home: Scaffold(
-        body: Home(),
+        body: Login(),
       ),
     );
   }
