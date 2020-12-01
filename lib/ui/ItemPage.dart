@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:final_app/ui/CreateItem.dart';
 import 'Items.dart';
 
 class ItemPage extends StatefulWidget {
@@ -55,10 +56,13 @@ class _ItemPageState extends State<ItemPage> {
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
-                    IconButton(
-                      icon: Icon(Icons.favorite,
-                          color: Colors.red[500]),
-                      onPressed: () {},)
+                    Tooltip(
+                      message: 'Item is Available',
+                      child: IconButton(
+                        icon: Icon(Icons.favorite, color: Colors.red[500], size: 20,),
+                        onPressed: () {},
+                      ),
+                    ),
                   ],
                 ),
                 Image.asset(
@@ -94,8 +98,45 @@ class _ItemPageState extends State<ItemPage> {
     final Size size = MediaQuery.of(context).size;
     final double categoryHeight = size.height*0.10;
 
-    return SafeArea(
-      child: Container(
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(
+        title: Text("Library",
+            style: Theme.of(context).textTheme.headline1),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).primaryColor.withOpacity(0.5),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Library Menu',
+                  style: TextStyle(fontSize: 35, color: Colors.white)),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/background3.jpg"),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            ListTile(
+              title: Text('Create New Item'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CreateItem()),
+                );
+              },
+            ),
+            ListTile(
+              title: Text('Settings'),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
+      body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage("assets/images/background1.jpg"), fit: BoxFit.fill)
@@ -103,42 +144,11 @@ class _ItemPageState extends State<ItemPage> {
         height: size.height,
         child: Column(
           children: <Widget>[
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Tooltip(
-                  message: 'Item is saved!',
-                  child: IconButton(
-                    icon: Icon(Icons.favorite, color: Colors.red[500], size: 30,),
-                    onPressed: () {},
-                  ),
-                ),
-                Text("Wish List",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40),
-                ),
-                Tooltip(
-                  message: 'Item is not saved!',
-                  child: IconButton(
-                    icon: Icon(Icons.favorite_border, color: Colors.red[500], size: 30,),
-                    onPressed: () {},
-                  ),
-                ),
-              ],
-            ),
-            new Container(
-              height: 90,
-              width: 90,
-              child: CircularProgressIndicator(
-                backgroundColor: Colors.transparent,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                strokeWidth: 5,
-              ),
-            ),
-            Text('Items Available', style: TextStyle(fontSize: 30),),
+            Text('Items Available',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                  color: Colors.white),),
             const SizedBox(
               height: 10,
             ),
