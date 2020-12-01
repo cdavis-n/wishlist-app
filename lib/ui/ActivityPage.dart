@@ -37,7 +37,7 @@ class _ActivityPageState extends State<ActivityPage> {
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: CircleAvatar(radius: 50,
-                    backgroundImage: new AssetImage('assets/items/ps5.jpg'),),),
+                    backgroundImage: new AssetImage('assets/people/miranda.jpg'),),),
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: Text('Miranda Smith',
@@ -94,7 +94,7 @@ class _ActivityPageState extends State<ActivityPage> {
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: CircleAvatar(radius: 50,
-                    backgroundImage: new AssetImage('assets/items/ps5.jpg'),),),
+                    backgroundImage: new AssetImage('assets/people/jeff.jpg'),),),
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: Text('Jeff Jones',
@@ -145,7 +145,7 @@ class _ActivityPageState extends State<ActivityPage> {
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: CircleAvatar(radius: 50,
-                    backgroundImage: new AssetImage('assets/items/ps5.jpg'),),),
+                    backgroundImage: new AssetImage('assets/people/kendrick.jpg'),),),
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: Text('Kendrick Ramos',
@@ -196,7 +196,7 @@ class _ActivityPageState extends State<ActivityPage> {
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: CircleAvatar(radius: 50,
-                    backgroundImage: new AssetImage('assets/items/ps5.jpg'),),),
+                    backgroundImage: new AssetImage('assets/people/michelle.jpg'),),),
                 Padding(
                   padding: EdgeInsets.all(5.0),
                   child: Text('Michelle Andrews',

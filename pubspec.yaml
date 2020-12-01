@@ -68,6 +68,10 @@ flutter:
     - assets/items/tv.jpg
     - assets/items/watch.jpg
     - assets/items/xbox.jpg
+    - assets/people/jeff.jpg
+    - assets/people/kendrick.jpg
+    - assets/people/michelle.jpg
+    - assets/people/miranda.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
