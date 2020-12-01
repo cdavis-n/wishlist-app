@@ -59,7 +59,7 @@ class _ItemPageState extends State<ItemPage> {
                     Tooltip(
                       message: 'Item is Available',
                       child: IconButton(
-                        icon: Icon(Icons.favorite, color: Colors.red[500], size: 20,),
+                        icon: Icon(Icons.shopping_bag, color: Colors.red[500], size: 20,),
                         onPressed: () {},
                       ),
                     ),
@@ -91,7 +91,6 @@ class _ItemPageState extends State<ItemPage> {
       });
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
